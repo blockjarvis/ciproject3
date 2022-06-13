@@ -1,17 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Bargains</title>
-</head>
-<body>
-    {% for bargain in bargains %}
+{% extends "base.html" %}
+{% block content %}
+
+  {% for bargain in bargains %}
     {{ bargain.bargain_name }}<br>
     {{ bargain.category_name }}<br>
     {{ bargain.bargain_description }}<br>
     {{ bargain.under_50 }}<br>
-{% endfor %}
-</body>
-</html>
+  {% endfor %}
+
+{% endblock %}
