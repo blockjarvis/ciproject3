@@ -97,6 +97,7 @@ def logout():
 
 @app.route("/add_bargain", methods=["GET", "POST"])
 def add_bargain():
+    # add new bargain
     if request.method == "POST":
         under_50 = "on" if request.form.get("under_50") else "off"
         bargain = {
@@ -117,6 +118,21 @@ def add_bargain():
 
 @app.route("/edit_bargain/<bargain_id>", methods=["GET", "POST"])
 def edit_bargain(bargain_id):
+    if request.method == "POST":
+        under_50 = "on" if request.form.get("under_50") else "off"
+        submit = {
+            "category_name": request.form.get("category_name"),
+            "bargain_name": request.form.get("bargain_name"),
+            "bargain_description": request.form.get("bargain_description"),
+            "under_50": under_50,
+            "created_by": session["user"]
+            # new func here
+        }
+        mongo.db.bargains.update_one({"_id": ObjectId(bargain_id)}, {'$set':submit})
+        flash("Task Successfully Updated")
+        return redirect(url_for("get_bargains"))
+        
+
     bargain = mongo.db.bargains.find_one({"_id": ObjectId(bargain_id)})
     categories = mongo.db.categories.find().sort("category_name", 1)
     return render_template("edit_bargain.html", bargain=bargain, categories=categories)
