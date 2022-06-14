@@ -103,6 +103,7 @@ def add_bargain():
         bargain = {
             "category_name": request.form.get("category_name"),
             "bargain_name": request.form.get("bargain_name"),
+            "bargain_img": request.form.get("bargain_img"),
             "bargain_description": request.form.get("bargain_description"),
             "under_50": under_50,
             "created_by": session["user"]
@@ -124,6 +125,7 @@ def edit_bargain(bargain_id):
         submit = {
             "category_name": request.form.get("category_name"),
             "bargain_name": request.form.get("bargain_name"),
+            "bargain_img": request.form.get("bargain_img"),
             "bargain_description": request.form.get("bargain_description"),
             "under_50": under_50,
             "created_by": session["user"]
