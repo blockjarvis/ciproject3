@@ -1,26 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
 
-  {% for bargain in bargains %}
-    {{ bargain.bargain_name }}<br>
-    {{ bargain.category_name }}<br>
-    {{ bargain.bargain_description }}<br>
-    {{ bargain.under_50 }}<br>
-  {% endfor %}
-
   <ul class="collapsible">
+    {% for bargain in bargains %}
     <li>
-        <div class="collapsible-header white-text light-blue darken-4 text-shadow"><i class="fas fa-caret-down"></i>First</div>
-        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-    <li>
-        <div class="collapsible-header white-text light-blue darken-4 text-shadow"><i class="fas fa-caret-down"></i>Second</div>
-        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-    <li>
-        <div class="collapsible-header white-text light-blue darken-4 text-shadow"><i class="fas fa-caret-down"></i>Third</div>
-        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
+        <div class="collapsible-header white-text light-blue darken-4 text-shadow">
+          <i class="fas fa-caret-down"></i>
+          <strong>{{ bargain.category_name }}</strong> : {{ bargain.bargain_name }}
+          {% if bargain.under_50 == "on" %}
+          <i class="fas fa-regular fa-award tooltipped"
+              data-position="right" data-tooltip="More than 50% discount!"></i>
+          {% endif %}
+        </div>
+        <div class="collapsible-body">
+          <p>{{ bargain.bargain_description }}</p>
+        </div>
+    </li> 
+    {% endfor %} 
   </ul>
 
 {% endblock %}
