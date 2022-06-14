@@ -10,9 +10,13 @@
 				<div class="input-field col s12">
                     <i class="fas fa-regular fa-gamepad prefix light-blue-text text-darken-4"></i>
 					<select id="category_name" name="category_name" class="validate" required>
-                        <option value="" disabled selected>Choose Device</option>
+                        <option value="" disabled>Choose Device</option>
                         {% for category in categories %}
-                            <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                            {% if category.category_name == bargain.category_name %}
+                                <option value="{{ category.category_name }}" selected>{{ category.category_name }}</option>
+                            {% else %}
+                                <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                            {% endif %}
                         {% endfor %}
                     </select>
 					<label for="category_name">Device</label>
@@ -23,7 +27,7 @@
                 <div class="input-field col s12">
                     <i class="fas fa-regular fa-tags prefix light-blue-text text-darken-4"></i>
                     <input id="bargain_name" name="bargain_name" minlength="5" maxlength="50"
-                        type="text" class="validate" required>
+                       value="{{ bargain.bargain_name }}" type="text" class="validate" required>
                     <label for="bargain_name">Bargain Name</label>
                 </div>
             </div>
@@ -32,7 +36,9 @@
                 <div class="input-field col s12">
                     <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
                     <textarea id="bargain_description" name="bargain_description" minlength="5"
-                        maxlength="200" class="materialize-textarea validate" required></textarea>
+                        maxlength="200" class="materialize-textarea validate" required>
+                        {{- bargain.bargain_description -}}
+                    </textarea>
                     <label for="bargain_description">Bargain Description</label>
                 </div>
             </div>
@@ -42,7 +48,11 @@
 					<div class="switch">
                         <i class="fas fa-regular fa-award prefix light-blue-text text-darken-4"></i>
 						<label for="under_50">
-                            <input type="checkbox" id="under_50" name="under_50">
+                            {% if bargain.under_50 == "on" %}
+                                <input type="checkbox" id="under_50" name="under_50" checked>
+                            {% else %}
+                                <input type="checkbox" id="under_50" name="under_50">
+                            {% endif %}
                             <span class="lever"></span>
                             More than 50% discount!
                         </label>
@@ -52,6 +62,10 @@
             <!-- submit button -->
             <div class="row">
                 <div class="col s12 center-align">
+                    <!-- cancel button -->
+                    <a href="{{ url_for('get_bargains') }}" class="btn-large red text-shadow">
+                        Cancel <i class="fas fa-times-circle right"></i>
+                    </a>
                     <button type="submit" class="btn-large light-blue darken-1 text-shadow">
                         Edit Bargain <i class="fas fa-edit right"></i>
                     </button>
