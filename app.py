@@ -115,6 +115,13 @@ def add_bargain():
     return render_template("add_bargain.html", categories=categories)
 
 
+@app.route("/edit_bargain/<bargain_id>", methods=["GET", "POST"])
+def edit_bargain(bargain_id):
+    bargain = mongo.db.bargains.find_one({"_id": ObjectId(bargain_id)})
+    categories = mongo.db.categories.find().sort("category_name", 1)
+    return render_template("edit_bargain.html", bargain=bargain, categories=categories)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
