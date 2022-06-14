@@ -105,6 +105,7 @@ def add_bargain():
             "bargain_name": request.form.get("bargain_name"),
             "bargain_img": request.form.get("bargain_img"),
             "bargain_description": request.form.get("bargain_description"),
+            "bargain_link": request.form.get("bargain_link"),
             "under_50": under_50,
             "created_by": session["user"]
             # new func here
@@ -127,6 +128,7 @@ def edit_bargain(bargain_id):
             "bargain_name": request.form.get("bargain_name"),
             "bargain_img": request.form.get("bargain_img"),
             "bargain_description": request.form.get("bargain_description"),
+            "bargain_link": request.form.get("bargain_link"),
             "under_50": under_50,
             "created_by": session["user"]
             # new func here
