@@ -97,7 +97,8 @@ def logout():
 
 @app.route("/add_bargain")
 def add_bargain():
-    return render_template("add_bargain.html")
+    categories = mongo.db.categories.find().sort("category_name", 1)
+    return render_template("add_bargain.html", categories=categories)
 
 
 if __name__ == "__main__":
