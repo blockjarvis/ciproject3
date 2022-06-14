@@ -118,6 +118,7 @@ def add_bargain():
 
 @app.route("/edit_bargain/<bargain_id>", methods=["GET", "POST"])
 def edit_bargain(bargain_id):
+    # edit bargain
     if request.method == "POST":
         under_50 = "on" if request.form.get("under_50") else "off"
         submit = {
@@ -136,6 +137,14 @@ def edit_bargain(bargain_id):
     bargain = mongo.db.bargains.find_one({"_id": ObjectId(bargain_id)})
     categories = mongo.db.categories.find().sort("category_name", 1)
     return render_template("edit_bargain.html", bargain=bargain, categories=categories)
+
+
+@app.route("/delete_bargain/<bargain_id>")
+def delete_bargain(bargain_id):
+    # delete bargain
+    mongo.db.bargains.delete_one({"_id": ObjectId(bargain_id)})
+    flash("Task Successfully Deleted")
+    return redirect(url_for("get_bargains"))
 
 
 if __name__ == "__main__":
