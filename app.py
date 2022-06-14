@@ -95,8 +95,22 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/add_bargain")
+@app.route("/add_bargain", methods=["GET", "POST"])
 def add_bargain():
+    if request.method == "POST":
+        under_50 = "on" if request.form.get("under_50") else "off"
+        bargain = {
+            "category_name": request.form.get("category_name"),
+            "bargain_name": request.form.get("bargain_name"),
+            "bargain_description": request.form.get("bargain_description"),
+            "under_50": under_50,
+            "created_by": session["user"]
+            # new func here
+        }
+        mongo.db.bargains.insert_one(bargain)
+        flash("Bargain Successfully Added")
+        return redirect(url_for("get_bargains"))
+
     categories = mongo.db.categories.find().sort("category_name", 1)
     return render_template("add_bargain.html", categories=categories)
 
