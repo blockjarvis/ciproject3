@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <h3 class="light-blue-text text-darken-4 center-align">Reports</h3>
+
+  <ul class="collapsible">
+    {% for report in reports %}
+    <li>
+        <div class="collapsible-header white-text light-blue darken-4 text-shadow">
+          <div class="col s3">
+            <i class="fas fa-caret-down"></i>
+            <button onclick="myFunction()" class="btn-small light-red lighten-1">Delete</button>            
+            <script>
+            function myFunction() {
+              let text;
+              if (confirm("Are you sure?") == true) {
+                window.location.href= "{{ url_for('delete_report', report_id=report._id) }}"
+              } else {
+                window.location.href = "{{ url_for('get_reports') }}"
+              }
+            }
+            </script>
+          </div>
+          <div class="col s9">
+              <strong>{{ report.reportcategory_name }}</strong> : {{ report.bargain_name }}  
+          </div>          
+        </div>
+        <div class="collapsible-body">
+        </div>
+    </li> 
+    {% endfor %} 
+  </ul>
+
+{% endblock %}

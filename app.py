@@ -158,6 +158,7 @@ def report_bargain(bargain_id):
         report = {
             "reportcategory_name": request.form.get("reportcategory_name"),
             "bargain_name": request.form.get("bargain_name"),
+            "bargain_comment": request.form.get("bargain_comment"),
         }
         mongo.db.reports.insert_one(report)
         flash("Bargain Successfully Reported")
@@ -166,7 +167,7 @@ def report_bargain(bargain_id):
 
     bargain = mongo.db.bargains.find_one({"_id": ObjectId(bargain_id)})
     reportcategories = mongo.db.reportcategories.find().sort("reportcategory_name", 1)
-    return render_template("report_bargain.html", bargain=bargain, reportcategories=reportcategories)
+    return render_template("report_bargain.html", bargain=bargain, reportcategories=reportcategories,)
 
 # MANAGE GAME CATEGORIES                 
 @app.route("/get_categories")
@@ -192,7 +193,7 @@ def add_category():
 
 @app.route("/delete_category/<category_id>")
 def delete_category(category_id):
-    # delete bargain
+    # delete device category
     mongo.db.categories.delete_one({"_id": ObjectId(category_id)})
     flash("Category Successfully Deleted")
     return redirect(url_for("get_categories"))
@@ -204,6 +205,20 @@ def get_reportcategories():
     # manage categories
     reportcategories = list(mongo.db.reportcategories.find().sort("reportcategory_name", 1))
     return render_template("categories.html", reportcategories=reportcategories)
+
+@app.route("/get_reports")
+def get_reports():
+    # report page
+    reports = list(mongo.db.reports.find())
+    return render_template("reports.html", reports=reports)
+
+
+@app.route("/delete_report/<report_id>")
+def delete_report(report_id):
+    # delete report
+    mongo.db.reports.delete_one({"_id": ObjectId(report_id)})
+    flash("Report Successfully Deleted")
+    return redirect(url_for("get_reports"))
 
 
 

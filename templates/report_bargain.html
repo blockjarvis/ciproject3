@@ -27,6 +27,15 @@
                     <label for="bargain_name">Bargain Name</label>
                 </div>
             </div>
+            <!-- Report comment -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-regular fa-tags prefix light-blue-text text-darken-4"></i>
+                    <input id="bargain_comment" name="bargain_comment" minlength="5" maxlength="100"
+                       value="{{ bargain.bargain_comment }}" type="text" class="validate" required>
+                    <label for="bargain_comment">Comment</label>
+                </div>
+            </div>
             <!-- submit button -->
             <div class="row">
                 <div class="col s12 center-align">
