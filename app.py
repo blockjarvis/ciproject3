@@ -155,18 +155,18 @@ def delete_bargain(bargain_id):
 def report_bargain(bargain_id):
     # report
     if request.method == "POST":
-        submit = {
+        report = {
             "reportcategory_name": request.form.get("reportcategory_name"),
             "bargain_name": request.form.get("bargain_name"),
         }
-        mongo.db.reports.insert_one({"_id": ObjectId(bargain_id)}, {'$set':submit})
+        mongo.db.reports.insert_one(report)
         flash("Bargain Successfully Reported")
         return redirect(url_for("get_bargains"))
         
 
     bargain = mongo.db.bargains.find_one({"_id": ObjectId(bargain_id)})
-    categories = mongo.db.reportcategories.find().sort("reportcategory_name", 1)
-    return render_template("edit_bargain.html", bargain=bargain, categories=categories)
+    reportcategories = mongo.db.reportcategories.find().sort("reportcategory_name", 1)
+    return render_template("report_bargain.html", bargain=bargain, reportcategories=reportcategories)
 
 
 if __name__ == "__main__":
