@@ -1,7 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
+<!-- game categories -->
+    <h3 class="light-blue-text text-darken-4 center-align">Game Categories</h3>
 
-    <h3 class="light-blue-text text-darken-4 center-align">Manage Categories</h3>
+    <div class="row">
+        <div class="col s12 center-align">
+            <a href="{{ url_for('add_category') }}" class="btn-large light-blue darken-2 text-shadow">
+                Add Category <i class="fas fa-plus-square right"></i>
+            </a>
+        </div>
+    </div>
 
     <div class="row">
         {% for category in categories %}
@@ -11,12 +19,47 @@
                         <span class="card-title">{{ category.category_name }}</span>
                     </div>
                     <div class="card-action">
-                        <a href="#" class="btn green accent-4">Edit</a>
-                        <a href="#" class="btn light-blue lighten-1">Delete</a>
+                        <button onclick="myFunction()" class="btn-small light-red lighten-1">Delete</button>            
+                        <script>
+                        function myFunction() {
+                          let text;
+                          if (confirm("Are you sure?") == true) {
+                            window.location.href= "{{ url_for('delete_category', category_id=category._id) }}"
+                          } else {
+                            window.location.href = "{{ url_for('get_categories') }}"
+                          }
+                        }
+                        </script>
                     </div>
                 </div>
             </div>
         {% endfor %}
     </div>
+<!-- report categories -->
+<h3 class="light-blue-text text-darken-4 center-align">Report Categories</h3>
+
+<div class="row">
+    <div class="col s12 center-align">
+        <a href="{{ url_for('add_category') }}" class="btn-large light-blue darken-2 text-shadow">
+            Add Category <i class="fas fa-plus-square right"></i>
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    {% for reportcategory in reportcategories %}
+        <div class="col s12 m3">
+            <div class="card light-blue darken-4 text-shadow center-align">
+                <div class="card-content white-text">
+                    <span class="card-title">{{ reportcategory.reportcategory_name }}</span>
+                </div>
+                <div class="card-action">
+                    <a href="#" class="btn green accent-4">Edit</a>
+                    <a href="#" class="btn light-blue lighten-1">Delete</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
 
 {% endblock %}

@@ -168,12 +168,44 @@ def report_bargain(bargain_id):
     reportcategories = mongo.db.reportcategories.find().sort("reportcategory_name", 1)
     return render_template("report_bargain.html", bargain=bargain, reportcategories=reportcategories)
 
-
+# MANAGE GAME CATEGORIES                 
 @app.route("/get_categories")
 def get_categories():
     # manage categories
     categories = list(mongo.db.categories.find().sort("category_name", 1))
     return render_template("categories.html", categories=categories)
+
+
+@app.route("/add_category", methods=["GET", "POST"])
+def add_category():
+    # add categories
+    if request.method == "POST":
+        category = {
+            "category_name": request.form.get("category_name")
+        }
+        mongo.db.categories.insert_one(category)
+        flash("New Category Added")
+        return redirect(url_for("get_categories"))
+
+    return render_template("add_category.html")
+
+
+@app.route("/delete_category/<category_id>")
+def delete_category(category_id):
+    # delete bargain
+    mongo.db.categories.delete_one({"_id": ObjectId(category_id)})
+    flash("Category Successfully Deleted")
+    return redirect(url_for("get_categories"))
+
+
+# MANAGE REPORT CATEGORIES                 
+@app.route("/get_reportcategories")
+def get_reportcategories():
+    # manage categories
+    reportcategories = list(mongo.db.reportcategories.find().sort("reportcategory_name", 1))
+    return render_template("categories.html", reportcategories=reportcategories)
+
+
 
 
 if __name__ == "__main__":
