@@ -169,6 +169,13 @@ def report_bargain(bargain_id):
     return render_template("report_bargain.html", bargain=bargain, reportcategories=reportcategories)
 
 
+@app.route("/get_categories")
+def get_categories():
+    # manage categories
+    categories = list(mongo.db.categories.find().sort("category_name", 1))
+    return render_template("categories.html", categories=categories)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
