@@ -37,7 +37,7 @@
           <p>{{ bargain.bargain_description }}</p>
           <a href="{{ bargain.bargain_link }}" class="btn-small green accent-4" target="_blank">Get Deal</a>
           <p><em>by: {{ bargain.created_by }}</em></p>
-          <a href="{{ url_for('add_report', bargain_id=bargain._id) }}" class="btn-small light-blue lighten-1">Report</a>
+          <a href="{{ url_for('report_bargain', bargain_id=bargain._id) }}" class="btn-small light-blue lighten-1">Report</a>
         </div>
     </li> 
     {% endfor %} 

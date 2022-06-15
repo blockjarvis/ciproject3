@@ -151,21 +151,22 @@ def delete_bargain(bargain_id):
     return redirect(url_for("get_bargains"))
 
 
-@app.route("/add_report", methods=["GET", "POST"])
-def add_report():
-    # Report bargain
+@app.route("/report_bargain/<bargain_id>", methods=["GET", "POST"])
+def report_bargain(bargain_id):
+    # report
     if request.method == "POST":
-        report = {
-            "category_name": request.form.get("category_name"),
+        submit = {
+            "reportcategory_name": request.form.get("reportcategory_name"),
             "bargain_name": request.form.get("bargain_name"),
-            # new func here
         }
-        mongo.db.reports.insert_one(report)
-        flash("Successfully Reported.")
+        mongo.db.reports.insert_one({"_id": ObjectId(bargain_id)}, {'$set':submit})
+        flash("Bargain Successfully Reported")
         return redirect(url_for("get_bargains"))
+        
 
-    categories = mongo.db.categories.find().sort("category_name", 1)
-    return render_template("add_bargain.html", categories=categories)
+    bargain = mongo.db.bargains.find_one({"_id": ObjectId(bargain_id)})
+    categories = mongo.db.reportcategories.find().sort("reportcategory_name", 1)
+    return render_template("edit_bargain.html", bargain=bargain, categories=categories)
 
 
 if __name__ == "__main__":
