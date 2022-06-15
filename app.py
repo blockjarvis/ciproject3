@@ -151,6 +151,23 @@ def delete_bargain(bargain_id):
     return redirect(url_for("get_bargains"))
 
 
+@app.route("/add_report", methods=["GET", "POST"])
+def add_report():
+    # Report bargain
+    if request.method == "POST":
+        report = {
+            "category_name": request.form.get("category_name"),
+            "bargain_name": request.form.get("bargain_name"),
+            # new func here
+        }
+        mongo.db.reports.insert_one(report)
+        flash("Successfully Reported.")
+        return redirect(url_for("get_bargains"))
+
+    categories = mongo.db.categories.find().sort("category_name", 1)
+    return render_template("add_bargain.html", categories=categories)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

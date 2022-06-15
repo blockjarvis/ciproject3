@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h3 class="light-blue-text text-darken-4 center-align">Edit Bargain</h3>
+
+    <div class="row card-panel grey lighten-5">
+        <form class="col s12" method="POST" action="{{ url_for('add_report', bargain_id=bargain._id) }}">
+            <!-- category selector -->
+			<div class="row">
+				<div class="input-field col s12">
+                    <i class="fas fa-regular fa-gamepad prefix light-blue-text text-darken-4"></i>
+					<select id="reportcategory_name" name="reportcategory_name" class="validate" required>
+                        <option value="" disabled selected>Choose Device</option>
+                        {% for reportcategory in reportcategories %}
+                            <option value="{{ reportcategory.reportcategory_name }}">{{ reportcategory.reportcategory_name }}</option>
+                        {% endfor %}
+                    </select>
+					<label for="category_name">Device</label>
+				</div>
+			</div>
+            <!-- Bargain name -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-regular fa-tags prefix light-blue-text text-darken-4"></i>
+                    <input id="bargain_name" name="bargain_name" minlength="5" maxlength="50"
+                       value="{{ bargain.bargain_name }}" type="text" class="validate" required>
+                    <label for="bargain_name">Bargain Name</label>
+                </div>
+            </div>
+            <!-- submit button -->
+            <div class="row">
+                <div class="col s12 center-align">
+                    <!-- cancel button -->
+                    <a href="{{ url_for('get_bargains') }}" class="btn-large red text-shadow">
+                        Cancel <i class="fas fa-times-circle right"></i>
+                    </a>
+                    <button type="submit" class="btn-large light-blue darken-1 text-shadow">
+                        Edit Bargain <i class="fas fa-edit right"></i>
+                    </button>
+                </div>
+            </div>            
+        </form>
+    </div>
+
+{% endblock %}
