@@ -10,10 +10,20 @@
           <div class="col s3">
             <i class="fas fa-caret-down"></i>
             {% if session.user|lower == bargain.created_by|lower %}
-            <a href="{{ url_for('delete_bargain', bargain_id=bargain._id) }}" class="btn-small green accent-4">Expired</a>
             <a href="{{ url_for('edit_bargain', bargain_id=bargain._id) }}" class="btn-small light-blue lighten-1">Edit</a>
+            <button onclick="myFunction()" class="btn-small light-red lighten-1">Expired</button>            
+            <script>
+            function myFunction() {
+              let text;
+              if (confirm("Are you sure?") == true) {
+                window.location.href= "{{ url_for('delete_bargain', bargain_id=bargain._id) }}"
+              } else {
+                window.location.href = "{{ url_for('get_bargains') }}"
+              }
+            }
+            </script>
+            </div>
             {% endif %}
-          </div>
           <div class="col s9">
             <strong>{{ bargain.category_name }}</strong> : {{ bargain.bargain_name }}
             {% if bargain.under_50 == "on" %}
