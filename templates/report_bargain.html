@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h3 class="light-blue-text text-darken-4 center-align">Report Bargain</h3>
+    <h3>Report Bargain</h3>
 
     <div class="row card-panel grey lighten-5">
         <form class="col s12" method="POST" action="{{ url_for('report_bargain', bargain_id=bargain._id) }}">
@@ -30,20 +30,21 @@
             <!-- Report comment -->
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="fas fa-regular fa-tags prefix light-blue-text text-darken-4"></i>
+                    <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
                     <input id="bargain_comment" name="bargain_comment" minlength="5" maxlength="100"
                        value="{{ bargain.bargain_comment }}" type="text" class="validate" required>
                     <label for="bargain_comment">Comment</label>
                 </div>
             </div>
-            <!-- submit button -->
+            <!-- buttons -->
             <div class="row">
                 <div class="col s12 center-align">
                     <!-- cancel button -->
-                    <a href="{{ url_for('get_bargains') }}" class="btn-large red text-shadow">
+                    <a href="{{ url_for('get_bargains') }}" class="btn-large red text-shadow buttonfont">
                         Cancel <i class="fas fa-times-circle right"></i>
                     </a>
-                    <button type="submit" class="btn-large light-blue darken-1 text-shadow">
+                    <!-- submit button -->
+                    <button type="submit" class="btn-large light-blue darken-4 text-shadow buttonfont">
                         Report Bargain <i class="fas fa-edit right"></i>
                     </button>
                 </div>

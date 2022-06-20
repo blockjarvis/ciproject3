@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
 <!-- game categories -->
-    <h3 class="light-blue-text text-darken-4 center-align">Game Categories</h3>
+    <h3>Game Categories</h3>
 
     <div class="row">
         <div class="col s12 center-align">
-            <a href="{{ url_for('add_category') }}" class="btn-large light-blue darken-2 text-shadow">
+            <a href="{{ url_for('add_category') }}" class="btn-large light-blue darken-4 text-shadow buttonfont">
                 Add Category <i class="fas fa-plus-square right"></i>
             </a>
         </div>
@@ -16,10 +16,10 @@
             <div class="col s12 m3">
                 <div class="card light-blue darken-4 text-shadow center-align">
                     <div class="card-content white-text">
-                        <span class="card-title">{{ category.category_name }}</span>
+                        <span class="card-title"><h5>{{ category.category_name }}</h5></span>
                     </div>
                     <div class="card-action">
-                        <button onclick="myFunction()" class="btn-small light-red lighten-1">Delete</button>            
+                        <button onclick="myFunction()" class="btn-small red lighten-1 buttonfont">Delete</button>            
                         <script>
                         function myFunction() {
                           let text;
@@ -36,11 +36,11 @@
         {% endfor %}
     </div>
 <!-- report categories -->
-<h3 class="light-blue-text text-darken-4 center-align">Report Categories</h3>
+<h3>Report Categories</h3>
 
 <div class="row">
     <div class="col s12 center-align">
-        <a href="{{ url_for('add_category') }}" class="btn-large light-blue darken-2 text-shadow">
+        <a href="{{ url_for('add_category') }}" class="btn-large light-blue darken-4 text-shadow buttonfont">
             Add Category <i class="fas fa-plus-square right"></i>
         </a>
     </div>
