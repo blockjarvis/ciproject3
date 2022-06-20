@@ -9,9 +9,9 @@
         <div class="collapsible-header white-text light-blue darken-4 text-shadow">
           <div class="col s3">
             <i class="fas fa-caret-down"></i>
-            <button onclick="myFunction()" class="btn-small red lighten-1 buttonfont">Delete</button>            
+            <button onclick="myFunctionz{{report._id}}()" class="btn-small red lighten-1 buttonfont">Delete</button>            
             <script>
-            function myFunction() {
+            function myFunctionz{{report._id}}() {
               let text;
               if (confirm("Are you sure?") == true) {
                 window.location.href= "{{ url_for('delete_report', report_id=report._id) }}"
