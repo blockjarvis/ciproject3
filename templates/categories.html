@@ -36,30 +36,38 @@
         {% endfor %}
     </div>
 <!-- report categories -->
-<h3>Report Categories</h3>
+    <h3>Report Categories</h3>
 
-<div class="row">
-    <div class="col s12 center-align">
-        <a href="{{ url_for('add_category') }}" class="btn-large light-blue darken-4 text-shadow buttonfont">
-            Add Category <i class="fas fa-plus-square right"></i>
-        </a>
+    <div class="row">
+        <div class="col s12 center-align">
+            <a href="{{ url_for('add_reportcategory') }}" class="btn-large light-blue darken-4 text-shadow buttonfont">
+                Add Category <i class="fas fa-plus-square right"></i>
+            </a>
+        </div>
     </div>
-</div>
 
-<div class="row">
-    {% for reportcategory in reportcategories %}
-        <div class="col s12 m3">
-            <div class="card light-blue darken-4 text-shadow center-align">
-                <div class="card-content white-text">
-                    <span class="card-title">{{ reportcategory.reportcategory_name }}</span>
-                </div>
-                <div class="card-action">
-                    <a href="#" class="btn green accent-4">Edit</a>
-                    <a href="#" class="btn light-blue lighten-1">Delete</a>
+    <div class="row">
+        {% for reportcategory in reportcategories %}
+            <div class="col s12 m3">
+                <div class="card light-blue darken-4 text-shadow center-align">
+                    <div class="card-content white-text">
+                        <span class="card-title"><h5>{{ reportcategory.reportcategory_name }}</h5></span>
+                    </div>
+                    <div class="card-action">
+                        <button onclick="myFunction()" class="btn-small red lighten-1 buttonfont">Delete</button>            
+                        <script>
+                        function myFunction() {
+                          let text;
+                          if (confirm("Are you sure?") == true) {
+                            window.location.href= "{{ url_for('delete_reportcategory', reportcategory_id=reportcategory._id) }}"
+                          } else {
+                            window.location.href = "{{ url_for('get_categories') }}"
+                          }
+                        }
+                        </script>
+                    </div>
                 </div>
             </div>
-        </div>
-    {% endfor %}
-</div>
+        {% endfor %}
 
 {% endblock %}

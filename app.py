@@ -174,12 +174,13 @@ def report_bargain(bargain_id):
 def get_categories():
     # manage categories
     categories = list(mongo.db.categories.find().sort("category_name", 1))
-    return render_template("categories.html", categories=categories)
+    reportcategories = list(mongo.db.reportcategories.find().sort("reportcategory_name", 1))
+    return render_template("categories.html", categories=categories, reportcategories=reportcategories)
 
 
 @app.route("/add_category", methods=["GET", "POST"])
 def add_category():
-    # add categories
+    # add device categories
     if request.method == "POST":
         category = {
             "category_name": request.form.get("category_name")
@@ -190,6 +191,19 @@ def add_category():
 
     return render_template("add_category.html")
 
+@app.route("/add_reportcategory", methods=["GET", "POST"])
+def add_reportcategory():
+    # add report categories
+    if request.method == "POST":
+        reportcategory = {
+            "reportcategory_name": request.form.get("reportcategory_name")
+        }
+        mongo.db.reportcategories.insert_one(reportcategory)
+        flash("New Category Added")
+        return redirect(url_for("get_categories"))
+
+    return render_template("add_reportcategory.html")
+
 
 @app.route("/delete_category/<category_id>")
 def delete_category(category_id):
@@ -198,13 +212,13 @@ def delete_category(category_id):
     flash("Category Successfully Deleted")
     return redirect(url_for("get_categories"))
 
+@app.route("/delete_reportcategory/<reportcategory_id>")
+def delete_reportcategory(reportcategory_id):
+    # delete report category
+    mongo.db.reportcategories.delete_one({"_id": ObjectId(reportcategory_id)})
+    flash("Report category Successfully Deleted")
+    return redirect(url_for("get_categories"))
 
-# MANAGE REPORT CATEGORIES                 
-@app.route("/get_reportcategories")
-def get_reportcategories():
-    # manage categories
-    reportcategories = list(mongo.db.reportcategories.find().sort("reportcategory_name", 1))
-    return render_template("categories.html", reportcategories=reportcategories)
 
 @app.route("/get_reports")
 def get_reports():
@@ -225,9 +239,6 @@ def get_profile():
     # manage categories
     profiles = list(mongo.db.bargains.find().sort("bargain_name", 1))
     return render_template("profile.html", profiles=profiles)
-
-
-
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
