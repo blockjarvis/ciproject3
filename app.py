@@ -222,9 +222,9 @@ def delete_report(report_id):
 
 @app.route("/get_profile")
 def get_profile():
-    # profile
-    profile = list(mongo.db.bargains.find())
-    return render_template("profile.html", profile=profile)
+    # manage categories
+    profiles = list(mongo.db.bargains.find().sort("bargain_name", 1))
+    return render_template("profile.html", profiles=profiles)
 
 
 

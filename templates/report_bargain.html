@@ -8,14 +8,14 @@
             <!-- category selector -->
 			<div class="row">
 				<div class="input-field col s12">
-                    <i class="fas fa-regular fa-gamepad prefix light-blue-text text-darken-4"></i>
+                    <i class="fas fa-solid fa-flag prefix light-blue-text text-darken-4"></i>
 					<select id="reportcategory_name" name="reportcategory_name" class="validate" required>
                         <option value="" disabled selected>Report Category</option>
                         {% for reportcategory in reportcategories %}
                             <option value="{{ reportcategory.reportcategory_name }}">{{ reportcategory.reportcategory_name }}</option>
                         {% endfor %}
                     </select>
-					<label for="category_name">Device</label>
+					<label for="category_name"></label>
 				</div>
 			</div>
             <!-- Bargain name -->
