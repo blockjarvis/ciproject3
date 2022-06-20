@@ -11,3 +11,88 @@
     max-width: 400px;
     height: 300px;
 }
+
+/*-- ===== align style ==== -- */
+
+.logo {
+    display: block;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 800px;
+    width:100%;
+}
+
+/*-- ===== (buttonsm) style ==== -- */
+.buttonsm {
+    background-color: #303030;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 4px 2px;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    width: 150px;
+}
+    .buttonsm {border-radius: 7px;}
+    
+    .buttonsm:hover {
+    background-color: #f0c234;
+    color: white;
+}
+
+ /*-- ===== buttons font style ==== -- */
+.buttonfont {
+    color:white; 
+    font-family: 'Montserrat', sans-serif;
+    font-size:14px ;
+    font-weight: 600;
+}
+
+ /*-- ===== P font style ==== -- */
+p {
+    color:#000000; 
+    font-family: 'Montserrat', sans-serif;
+    font-size:15px ;
+    font-weight: 400;
+}
+
+ /*-- ===== H1,H2 font style ==== -- */    
+h1,h2,h3{
+    text-align: center;
+    color:#1b1a17; 
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+ /*-- ===== H5,H6 font style ==== -- */    
+ h5,h6{
+    text-align: center;
+    color:#ffffff; 
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size:17px ;
+}
+
+ /*-- ===== category box style ==== -- */  
+.categorybox {
+    background-color: #303030;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 4px 2px;
+    padding: 3px;
+    text-align: center;
+    text-decoration: none;
+    width: 180px;
+}
+    .categorybox {border-radius: 7px;}

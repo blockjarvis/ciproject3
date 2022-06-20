@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-  <h3 class="light-blue-text text-darken-4 center-align">Bargains</h3>
+  <h2>Bargains</h2>
 
   <ul class="collapsible">
     {% for bargain in bargains %}
@@ -10,8 +10,8 @@
           <div class="col s3">
             <i class="fas fa-caret-down"></i>
             {% if session.user|lower == bargain.created_by|lower %}
-            <a href="{{ url_for('edit_bargain', bargain_id=bargain._id) }}" class="btn-small light-blue lighten-1">Edit</a>
-            <button onclick="myFunction()" class="btn-small light-red lighten-1">Expired</button>            
+            <a href="{{ url_for('edit_bargain', bargain_id=bargain._id) }}" class="btn-small light-blue lighten-1 buttonfont">Edit</a>
+            <button onclick="myFunction()" class="btn-small red lighten-1 buttonfont">Expired</button>            
             <script>
             function myFunction() {
               let text;
@@ -25,19 +25,22 @@
             {% endif %}
           </div>            
           <div class="col s9">
-            <strong>{{ bargain.category_name }}</strong> : {{ bargain.bargain_name }}
+            <div class="categorybox">
+              <i class="fas fa-solid fa-gamepad fa-lg"></i>{{ bargain.category_name }}
+            </div>
             {% if bargain.under_50 == "on" %}
             <i class="fas fa-regular fa-award tooltipped"
                 data-position="right" data-tooltip="More than 50% discount!"></i>
-            {% endif %}
+            {% endif %} 
+            <h6>{{ bargain.bargain_name }}</h6>
           </div>
         </div>
         <div class="collapsible-body">
           <img class="bargainimg" src="{{ bargain.bargain_img }}" alt="bargain-img">
           <p>{{ bargain.bargain_description }}</p>
-          <a href="{{ bargain.bargain_link }}" class="btn-small green accent-4" target="_blank">Get Deal</a>
+          <a href="{{ bargain.bargain_link }}" class="btn-small green accent-4 buttonfont" target="_blank">Get Deal</a>
           <p><em>by: {{ bargain.created_by }}</em></p>
-          <a href="{{ url_for('report_bargain', bargain_id=bargain._id) }}" class="btn-small light-blue lighten-1">Report</a>
+          <a href="{{ url_for('report_bargain', bargain_id=bargain._id) }}" class="btn-small red lighten-1 buttonfont">Report</a>
         </div>
     </li> 
     {% endfor %} 
