@@ -10,5 +10,30 @@
             </div>
         </div>
     </div>
+    
+    <div class="row">
+        {% for bargain in bargains %}
+            <div class="col s12 m3">
+                <div class="card light-blue darken-4 text-shadow center-align">
+                    <div class="card-content white-text">
+                        <span class="card-title"><h5>{{ bargain.bargain_name }}</h5></span>
+                    </div>
+                    <div class="card-action">
+                        <button onclick="myFunction()" class="btn-small red lighten-1 buttonfont">Delete</button>            
+                        <script>
+                        function myFunction() {
+                          let text;
+                          if (confirm("Are you sure?") == true) {
+                            window.location.href= "{{ url_for('delete_category', category_id=category._id) }}"
+                          } else {
+                            window.location.href = "{{ url_for('get_categories') }}"
+                          }
+                        }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 
 {% endblock %}

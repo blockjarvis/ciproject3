@@ -220,6 +220,12 @@ def delete_report(report_id):
     flash("Report Successfully Deleted")
     return redirect(url_for("get_reports"))
 
+@app.route("/get_profile")
+def get_profile():
+    # profile
+    profile = list(mongo.db.bargains.find())
+    return render_template("profile.html", profile=profile)
+
 
 
 

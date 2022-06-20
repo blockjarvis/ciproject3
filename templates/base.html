@@ -20,12 +20,12 @@
 <body>
 
 	<header>
+        <img src="/static/images/22fg.png" alt="Logo game" class="logo" width="800" height="256">
         <!-- top navbar -->
 		<nav class="nav-extended text-shadow light-blue darken-4">
-			<div class="nav-wrapper">
-				<a href="{{ url_for('get_bargains') }}" class="brand-logo">Game Bargains</a>
-				<a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
-				<ul class="right hide-on-med-and-down">
+			<div class="nav-wrapper container">
+				<a href="#" data-target="mobile-demo" class="sidenav-trigger left"><i class="fas fa-bars"></i></a>
+				<ul class="left hide-on-med-and-down">
 					<li><a href="{{ url_for('get_bargains') }}">Home</a></li>
                     {% if session.user %}
                         <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
@@ -78,7 +78,7 @@
     <main class="container">
         {% block content %}
         {% endblock %}
-    </main>}
+    </main>
 
     <!-- ===== Footer ==== -->
     <footer>
