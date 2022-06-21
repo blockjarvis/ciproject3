@@ -84,7 +84,8 @@ def profile(username):
     # grab the session user's username from db
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    return render_template("profile.html", username=username)
+    profiles = list(mongo.db.bargains.find(({"created_by": username})).sort("bargain_name", 1))
+    return render_template("profile.html", username=username, profiles=profiles)
 
 
 @app.route("/logout")
@@ -148,7 +149,7 @@ def delete_bargain(bargain_id):
     # delete bargain
     mongo.db.bargains.delete_one({"_id": ObjectId(bargain_id)})
     flash("Task Successfully Deleted")
-    return redirect(url_for("get_bargains"))
+    return redirect(request.referrer)
 
 
 @app.route("/report_bargain/<bargain_id>", methods=["GET", "POST"])
@@ -234,11 +235,6 @@ def delete_report(report_id):
     flash("Report Successfully Deleted")
     return redirect(url_for("get_reports"))
 
-@app.route("/get_profile")
-def get_profile():
-    # manage categories
-    profiles = list(mongo.db.bargains.find().sort("bargain_name", 1))
-    return render_template("profile.html", profiles=profiles)
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
