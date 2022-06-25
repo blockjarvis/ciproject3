@@ -22,7 +22,7 @@ The purpose is to design an attractive website to share bargains and interact wi
 ### Returning Visitor Goals
 1. As a Returning Visitor, I want to check new bargains.
 2. As a Returning Visitor, I want to manage my added bargain.
-3. As a Frequent User, I want to be able to access your social media accounts.
+3. As a Returning Visitor, I want to be able to access your social media accounts.
 
 ### Frequent User Goals
 1. As a Frequent User, I want to check the bargains daily.
@@ -194,6 +194,11 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate th
 
 - W3C Markup Validator
 
+![Markup HTML](static/images/readme/htmlvalidation.png)
+
+Warning on base.html, Validator can't identify inside python code.
+![Warning](static/images/readme/warningvalidation.png)
+
 - W3C CSS Validator 
 
 ![Markup CSS](static/images/readme/cssvalidation.png)
@@ -202,12 +207,15 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate th
 
 ![PowerMapper](static/images/readme/powermapvalidation.png)
 
-PowerMapper was used to double-check the browser compatibility.
+- PEP8 Validator 
+
+![PEP8](static/images/readme/pep8validation.png)
+
 ## Testing User Stories from User Experience (UX) Section
 ### First Time Visitor Goals
 1. As a first time visitor, I want to easily see the bargains.
     - At first glance the user can already see the bargains.
-    - The bargain contains the category, name and more than 50% discount toggle
+    - The bargain contains the category, name and more than 50% discount toggle.
     - When expanded, the user can find more details about the bargain. 
   
 2. As a first time visitor, I want to register and add my own bargain.
@@ -246,6 +254,11 @@ PowerMapper was used to double-check the browser compatibility.
 
 - On old devices, the images can break the layout.
 - Cards and collapsible layout can break depending of text size.
+
+### Future Improvements
+
+- Select Bargains by category.
+- Sort bargains by date.
 
 ## Deployment
 
@@ -306,11 +319,13 @@ By forking the GitHub Repository we make a copy of the original repository on ou
 - Confirmation pop-up code in JS from [W3School](https://www.w3schools.com/).
 
 ### Media
-1. images were sourced from [Unsplash](https://unsplash.com/).
+1. Images were sourced from [Unsplash](https://unsplash.com/).
   
 2. All icons were sourced from [Fontawesome](https://fontawesome.com/).
 
 3. Photoshop was used by a graphic designer to make the logo (Rodrigo Lorenzo).
+
+4. Deploying on Heroku explained steps from [KSheridan86](https://github.com/KSheridan86).
 
 ### Acknowledgements
 - [Tim Nelson](https://github.com/TravelTimN) for explaining in a way that makes everything easy.

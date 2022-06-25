@@ -1,7 +1,9 @@
+/*-- ===== small button class ==== -- */
 .btn-small {
     margin: 5px;
 }
 
+/*-- ===== Collapsible style ==== -- */
 .collapsible-header .col strong {
     margin: 5px;
     line-height: 42px;

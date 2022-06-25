@@ -10,7 +10,9 @@
           <div class="col s3">
             <i class="fas fa-caret-down"></i>
             {% if session.user|lower == bargain.created_by|lower %}
+            <!-- Edit Button -->
             <a href="{{ url_for('edit_bargain', bargain_id=bargain._id) }}" class="btn-small light-blue lighten-1 buttonfont">Edit</a>
+            <!-- Expired Button -->
             <button onclick="myFunctionw{{bargain._id}}()" class="btn-small red lighten-1 buttonfont">Expired</button>            
             <script>
             function myFunctionw{{bargain._id}}() {
@@ -28,6 +30,7 @@
             <div class="categorybox">
               <i class="fas fa-solid fa-gamepad fa-lg"></i>{{ bargain.category_name }}
             </div>
+            <!-- Toggle -->
             {% if bargain.under_50 == "on" %}
             <i class="fas fa-regular fa-award tooltipped"
                 data-position="right" data-tooltip="More than 50% discount!"></i>
@@ -35,6 +38,7 @@
             <h6>{{ bargain.bargain_name }}</h6>
           </div>
         </div>
+        <!-- collapsible body -->
         <div class="collapsible-body">
           <img class="bargainimg" src="{{ bargain.bargain_img }}" alt="bargain-img" width="300" height="300">
           <p>{{ bargain.bargain_description }}</p>

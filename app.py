@@ -172,7 +172,9 @@ def report_bargain(bargain_id):
     reportcategories = mongo.db.reportcategories.find().sort(
         "reportcategory_name", 1)
     return render_template(
-        "report_bargain.html", bargain=bargain, reportcategories=reportcategories)
+        "report_bargain.html",
+        bargain=bargain,
+        reportcategories=reportcategories)
 
 
 @app.route("/get_categories")
@@ -182,7 +184,9 @@ def get_categories():
     reportcategories = list(
         mongo.db.reportcategories.find().sort("reportcategory_name", 1))
     return render_template(
-        "categories.html", categories=categories, reportcategories=reportcategories)
+        "categories.html",
+        categories=categories,
+        reportcategories=reportcategories)
 
 
 @app.route("/add_category", methods=["GET", "POST"])
