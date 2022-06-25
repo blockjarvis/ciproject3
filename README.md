@@ -45,19 +45,33 @@ The purpose is to design an attractive website to share bargains and interact wi
 
 ### Wireframes
 
-#### index.html
-1. [Desktop index.html](wireframe/desktopindex.png)
+#### Home
+1. [Desktop home.html](static/images/readme/wireframe/homedesktop.png)
 
-2. [Mobile index.html](wireframe/mobileindex.png)
+2. [Mobile home.html](static/images/readme/wireframe/homeandroid.png)
 
-3. [Tablet index.html](wireframe/tabletindex.png)
+3. [Tablet home.html](static/images/readme/wireframe/hometablet.png)
 
-#### premium.html
-1. [Desktop premium.html](wireframe/desktoppremium.png)
+#### New Bargain
+1. [Desktop newbargain.html](static/images/readme/wireframe/newbargaindesktop.png)
 
-2. [Tablet premium.html](wireframe/tabletpremium.png)
+2. [Mobile newbargain.html](static/images/readme/wireframe/newbargainandroid.png)
 
-3. [Mobile premium.html](wireframe/mobilepremium.png)
+3. [Tablet newbargain.html](static/images/readme/wireframe/newbargaintablet.png)
+
+#### Profile
+1. [Desktop profile.html](static/images/readme/wireframe/profiledesktop.png)
+
+2. [Mobile profile.html](static/images/readme/wireframe/profileandroid.png)
+
+3. [Tablet profile.html](static/images/readme/wireframe/profiletablet.png)
+
+#### Log In
+1. [Desktop login.html](static/images/readme/wireframe/logindesktop.png)
+
+2. [Mobile login.html](static/images/readme/wireframe/loginandroid.png)
+
+3. [Tablet login.html](static/images/readme/wireframe/logintablet.png)
 
 ## Existing Features
 
