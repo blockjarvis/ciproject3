@@ -84,8 +84,10 @@ def profile(username):
     # grab the session user's username from db
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    profiles = list(mongo.db.bargains.find(({"created_by": username})).sort("bargain_name", 1))
-    return render_template("profile.html", username=username, profiles=profiles)
+    profiles = list(mongo.db.bargains.find(
+        ({"created_by": username})).sort("bargain_name", 1))
+    return render_template(
+        "profile.html", username=username, profiles=profiles)
 
 
 @app.route("/logout")
@@ -134,14 +136,15 @@ def edit_bargain(bargain_id):
             "created_by": session["user"]
             # new func here
         }
-        mongo.db.bargains.update_one({"_id": ObjectId(bargain_id)}, {'$set':submit})
+        mongo.db.bargains.update_one(
+            {"_id": ObjectId(bargain_id)}, {'$set': submit})
         flash("Task Successfully Updated")
         return redirect(url_for("get_bargains"))
-        
 
     bargain = mongo.db.bargains.find_one({"_id": ObjectId(bargain_id)})
     categories = mongo.db.categories.find().sort("category_name", 1)
-    return render_template("edit_bargain.html", bargain=bargain, categories=categories)
+    return render_template(
+        "edit_bargain.html", bargain=bargain, categories=categories)
 
 
 @app.route("/delete_bargain/<bargain_id>")
@@ -164,19 +167,22 @@ def report_bargain(bargain_id):
         mongo.db.reports.insert_one(report)
         flash("Bargain Successfully Reported")
         return redirect(url_for("get_bargains"))
-        
 
     bargain = mongo.db.bargains.find_one({"_id": ObjectId(bargain_id)})
-    reportcategories = mongo.db.reportcategories.find().sort("reportcategory_name", 1)
-    return render_template("report_bargain.html", bargain=bargain, reportcategories=reportcategories,)
+    reportcategories = mongo.db.reportcategories.find().sort(
+        "reportcategory_name", 1)
+    return render_template(
+        "report_bargain.html", bargain=bargain, reportcategories=reportcategories)
 
-# MANAGE GAME CATEGORIES                 
+
 @app.route("/get_categories")
 def get_categories():
     # manage categories
     categories = list(mongo.db.categories.find().sort("category_name", 1))
-    reportcategories = list(mongo.db.reportcategories.find().sort("reportcategory_name", 1))
-    return render_template("categories.html", categories=categories, reportcategories=reportcategories)
+    reportcategories = list(
+        mongo.db.reportcategories.find().sort("reportcategory_name", 1))
+    return render_template(
+        "categories.html", categories=categories, reportcategories=reportcategories)
 
 
 @app.route("/add_category", methods=["GET", "POST"])
@@ -191,6 +197,7 @@ def add_category():
         return redirect(url_for("get_categories"))
 
     return render_template("add_category.html")
+
 
 @app.route("/add_reportcategory", methods=["GET", "POST"])
 def add_reportcategory():
@@ -212,6 +219,7 @@ def delete_category(category_id):
     mongo.db.categories.delete_one({"_id": ObjectId(category_id)})
     flash("Category Successfully Deleted")
     return redirect(url_for("get_categories"))
+
 
 @app.route("/delete_reportcategory/<reportcategory_id>")
 def delete_reportcategory(reportcategory_id):
